@@ -1,0 +1,12 @@
+[web]
+listen_addr = "0.0.0.0:8889"
+static_dir = "static"
+
+
+
+
+
+
+[actions]
+sound_dir = "sound"
+video_dir = "video"

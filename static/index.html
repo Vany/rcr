@@ -1,0 +1,63 @@
+<html>
+
+<head>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div id = "content">
+
+        <div id="lalala">
+
+        </div>
+        <script>
+            let self = document.getElementById("lalala");
+            self.onWSEvent = function (msg) {
+            console.log("⏺️   😀", msg);
+            }
+
+        </script>
+
+    </div>
+</body>
+
+
+<script defer>
+    ConnectWebsocket("ws", () => FetchWidgets(""));
+
+    function onWSMessage(ev) {
+        const pipe = ev.data.indexOf("|");
+        const name = ev.data.substring(0, pipe);
+        const data = ev.data.substring(pipe+1);
+        let w = document.getElementById(name);
+        let f = w.onWSEvent;
+        if (f != null) f(data);
+        else console.log(name, " have no ws event listener");
+    }
+
+    function FetchWidgets(path) {
+        // fetch("/widgets/" + path)
+        //     .then((response) => response.text())
+        //     .then((text) => {
+        //         let c = document.getElementById("content");
+        //         c.innerHTML = text;
+        //         for (let s of c.getElementsByTagName("script")) eval(s.innerText);
+        //     })
+    }
+
+    let wakeLock = null;
+    async function requestWakeLock() {
+        try {
+            wakeLock = await navigator.wakeLock.request('screen');
+            console.log('Wake lock is active');
+            wakeLock.addEventListener('release', () => console.log('Wake lock was released'));
+        } catch (err) {
+            console.error(`Wake lock request failed: ${err.name}, ${err.message}`);
+        }}
+    requestWakeLock();
+
+
+</script>
+
+</html>
