@@ -7,10 +7,11 @@ edition = "2021"
 log = "0.4.22"
 simple-log = "2.1.1"
 serde = "1.0.215"
-serde_derive = {  version = "1.0.215"}
+serde_derive = { version = "1.0.215" }
 config = "0.14.1"
 error-chain = "0.12.4"
 tokio = { version = "1.41.1", features = ["full"] }
-axum = {  version =  "0.8.0-alpha.1", features = ["tokio", "ws"] }
-tower-http = {  version = "0.6.1", features = ["fs"] }
-async-channel = "2.3.1"
+axum = { version = "0.8.0-alpha.1", features = ["tokio", "ws"] }
+tower-http = { version = "0.6.1", features = ["fs"] }
+macros = { path = "macros" }
+inventory = "0.3.15"
